@@ -1,4 +1,4 @@
-const pathPrefix = `./dist`;
+const pathPrefix = `${__dirname}/dist`;
 const distFolders = [
   pathPrefix,
   `${pathPrefix}/css`,

@@ -40,7 +40,8 @@ const init = async () => {
     method: "GET",
     path: "/",
     handler: (request, h) => {
-      return h.file(`./server/dist/index.html`);
+      // return h.file(`./server/dist/index.html`);
+      return __dirname;
     },
   });
 

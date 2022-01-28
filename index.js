@@ -4,6 +4,7 @@ const distFolders = [
   `${pathPrefix}/css`,
   `${pathPrefix}/img`,
   `${pathPrefix}/js`,
+  `${pathPrefix}/fonts`,
 ];
 const Hapi = require("@hapi/hapi");
 const fs = require("fs");

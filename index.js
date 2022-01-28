@@ -1,4 +1,4 @@
-const pathPrefix = `./server/dist`
+const pathPrefix = `./dist`
 const distFolders = [pathPrefix, `${pathPrefix}/css`, `${pathPrefix}/img`, `${pathPrefix}/js`];
 const Hapi = require("@hapi/hapi");
 const fs = require("fs");
@@ -34,7 +34,7 @@ const init = async () => {
     method: "GET",
     path: "/",
     handler: (request, h) => {
-      return h.file(`/dist/index.html`);
+      return h.file(`./server/dist/index.html`);
     },
   });
 

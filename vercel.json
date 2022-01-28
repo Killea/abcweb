@@ -7,9 +7,5 @@
       "use": "@vercel/node",
       "config": { "includeFiles": ["dist/**"] }
     }
-  ],
-  "scripts": {
-    "vercel-build": "npm run build",
-    "start": "npm run start"
-  }
+  ]
 }

@@ -12,7 +12,9 @@ const init = async () => {
   });
 
   await server.register(require("@hapi/inert"));
+  try {
 
+  
   distFolders.forEach((folder) => {
     fs.readdirSync(folder).forEach((file) => {
       const path = `${folder}/${file}`;
@@ -29,6 +31,10 @@ const init = async () => {
       }
     });
   });
+  }
+  catch (err) {
+    console.log(err)
+  }
 
   server.route({
     method: "GET",

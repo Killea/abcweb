@@ -1,5 +1,10 @@
-const pathPrefix = `./dist`
-const distFolders = [pathPrefix, `${pathPrefix}/css`, `${pathPrefix}/img`, `${pathPrefix}/js`];
+const pathPrefix = `./dist`;
+const distFolders = [
+  pathPrefix,
+  `${pathPrefix}/css`,
+  `${pathPrefix}/img`,
+  `${pathPrefix}/js`,
+];
 const Hapi = require("@hapi/hapi");
 const fs = require("fs");
 
@@ -10,30 +15,29 @@ const init = async () => {
     port: 3000,
     host: "localhost",
   });
-
+  const tmp = [];
   await server.register(require("@hapi/inert"));
   try {
+    distFolders.forEach((folder) => {
+      fs.readdirSync(folder).forEach((file) => {
+        const path = `${folder}/${file}`;
+        if (!isFolder(path)) {
+          console.log(path);
 
-  
-  distFolders.forEach((folder) => {
-    fs.readdirSync(folder).forEach((file) => {
-      const path = `${folder}/${file}`;
-      if (!isFolder(path)) {
-        console.log(path);
-        const routePath = path.replace(pathPrefix, "");
-        server.route({
-          method: "GET",
-          path: routePath,
-          handler: function (request, h) {
-            return h.file(path);
-          },
-        });
-      }
+          const routePath = path.replace(pathPrefix, "");
+          tmp.push(path);
+          server.route({
+            method: "GET",
+            path: routePath,
+            handler: function (request, h) {
+              return h.file(path);
+            },
+          });
+        }
+      });
     });
-  });
-  }
-  catch (err) {
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
 
   server.route({
@@ -41,7 +45,7 @@ const init = async () => {
     path: "/",
     handler: (request, h) => {
       // return h.file(`./server/dist/index.html`);
-      return __dirname;
+      return { a: JSON.stringify(tmp), path: __dirname+ `/dist/index.html`};
     },
   });
 

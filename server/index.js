@@ -1,4 +1,5 @@
-const distFolders = ["./dist", "./dist/css", "./dist/img", "./dist/js"];
+const pathPrefix = `./server/dist`
+const distFolders = [pathPrefix, `${pathPrefix}/css`, `${pathPrefix}/img`, `${pathPrefix}/js`];
 const Hapi = require("@hapi/hapi");
 const fs = require("fs");
 
@@ -17,7 +18,7 @@ const init = async () => {
       const path = `${folder}/${file}`;
       if (!isFolder(path)) {
         console.log(path);
-        const routePath = path.replace("./dist", "");
+        const routePath = path.replace(pathPrefix, "");
         server.route({
           method: "GET",
           path: routePath,
@@ -33,7 +34,7 @@ const init = async () => {
     method: "GET",
     path: "/",
     handler: (request, h) => {
-      return h.file(`./dist/index.html`);
+      return h.file(`/dist/index.html`);
     },
   });
 

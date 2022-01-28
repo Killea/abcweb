@@ -22,10 +22,9 @@ const init = async () => {
       fs.readdirSync(folder).forEach((file) => {
         const path = `${folder}/${file}`;
         if (!isFolder(path)) {
-          console.log(path);
-
-          const routePath = path.replace(pathPrefix, "");
-          tmp.push(path);
+          const routePath = path.replace(`${pathPrefix}`, "");
+          console.log(routePath, path);
+          tmp.push({ [routePath]: path });
           server.route({
             method: "GET",
             path: routePath,
@@ -46,6 +45,14 @@ const init = async () => {
     handler: (request, h) => {
       return h.file(__dirname + `/dist/index.html`);
       // return { a: JSON.stringify(tmp), path: __dirname+ `/dist/index.html`};
+    },
+  });
+
+  server.route({
+    method: "GET",
+    path: "/path",
+    handler: (request, h) => {
+      return { a: JSON.stringify(tmp) };
     },
   });
 

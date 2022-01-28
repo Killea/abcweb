@@ -39,13 +39,13 @@ const init = async () => {
     console.log(err);
   }
 
-  server.route({
-    method: "GET",
-    path: "/path",
-    handler: (request, h) => {
-      return h.file(__dirname + `/dist/index.html`);
-    },
-  });
+  // server.route({
+  //   method: "GET",
+  //   path: "/path",
+  //   handler: (request, h) => {
+  //     return h.file(__dirname + `/dist/index.html`);
+  //   },
+  // });
 
   server.route({
     method: "GET",

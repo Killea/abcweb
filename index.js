@@ -50,8 +50,8 @@ const init = async () => {
   server.route({
     method: "GET",
     path: "/",
-    handler: () => {
-      return { a: JSON.stringify(tmp) };
+    handler: (r, h) => {
+      return h.file(__dirname + `/dist/index.html`);
     },
   });
 

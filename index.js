@@ -44,8 +44,8 @@ const init = async () => {
     method: "GET",
     path: "/",
     handler: (request, h) => {
-      // return h.file(`./server/dist/index.html`);
-      return { a: JSON.stringify(tmp), path: __dirname+ `/dist/index.html`};
+      return h.file(__dirname + `/dist/index.html`);
+      // return { a: JSON.stringify(tmp), path: __dirname+ `/dist/index.html`};
     },
   });
 

@@ -41,17 +41,16 @@ const init = async () => {
 
   server.route({
     method: "GET",
-    path: "/",
+    path: "/path",
     handler: (request, h) => {
       return h.file(__dirname + `/dist/index.html`);
-      // return { a: JSON.stringify(tmp), path: __dirname+ `/dist/index.html`};
     },
   });
 
   server.route({
     method: "GET",
-    path: "/path",
-    handler: (request, h) => {
+    path: "/",
+    handler: () => {
       return { a: JSON.stringify(tmp) };
     },
   });

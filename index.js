@@ -87,8 +87,7 @@ const init = async () => {
   server.route({
     method: ["GET"],
     path: "/{any*}",
-    handler: (request, h) => {
-      console.log(request.url);
+    handler: (r, h) => {
       return 404;
     },
   });

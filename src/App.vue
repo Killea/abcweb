@@ -8,9 +8,8 @@
     </div>
     <div class="body-item">
       {{ currentPath }}
-      <template
-        v-if="currentPath==='/javascript-entry-level'">
-        <img alt="Vue logo" src="./assets/logo.png">
+      <template v-if="currentPath === '/javascript-entry-level'">
+        <img alt="Vue logo" src="./assets/logo.png" />
         <JavaScriptEntryLevel msg="Welcome to Your Vue.js App" />
       </template>
     </div>
@@ -20,8 +19,7 @@
 </template>
 
 <script>
-
-import JavaScriptEntryLevel from "./components/JavaScriptEntryLevel.vue"
+import JavaScriptEntryLevel from "./components/JavaScriptEntryLevel.vue";
 import Vue from "vue";
 import "vue-navigation-bar/dist/vue-navigation-bar.css";
 
@@ -149,21 +147,32 @@ export default {
     console.log(window.location.pathname);
     this.currentPath = window.location.pathname;
   },
+  mounted() {
+    window.addEventListener("popstate", this.handleHistoryChange);
+  },
   computed: {
     // currentPath(){
     //   return window.location.pathname;
     // }
   },
+  watcher: {
+    "window.location.pathname": function () {
+      console.log(window.location.pathname);
+    },
+  },
   methods: {
     menuClick($event) {
-      window.history.pushState(
-        "object or string",
-        "Title",
-        `${$event.replaceAll(" ", "-").toLowerCase()}`
-      );
+      const pathName = `${$event.replaceAll(" ", "-").toLowerCase()}`;
+
+      window.history.pushState(pathName, pathName, pathName);
       this.currentPath = window.location.pathname;
       console.log($event, window.location.pathname);
     },
+    handleHistoryChange()
+    {
+      console.log('💰',window.location.pathname);
+      this.currentPath = window.location.pathname;
+    }
   },
 };
 </script>

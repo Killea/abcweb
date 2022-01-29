@@ -9,6 +9,9 @@
 import VueMarkdown from "vue-markdown";
 
 import Prism from "prismjs";
+// import "prismjs/themes/prism-okaidia.css"; // theme
+// import "prismjs/components/prism-javascript.min"; // language
+// import "prismjs/components/prism-go.min"; // language
 
 export default {
   components: {
@@ -39,4 +42,7 @@ export default {
 
 <style>
 @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+.vnb__menu-options__option__link {
+  font-size: 16px;
+}
 </style>

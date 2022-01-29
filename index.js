@@ -88,10 +88,7 @@ const init = async () => {
     method: ["GET"],
     path: "/{any*}",
     handler: (r, h) => {
-      if (r.path === "/[object%20Object]") {
-        return h.file(`${pathPrefix}/index.html`)
-      }
-      return `404: ${r.path} not found`;
+      return h.file(`${pathPrefix}/index.html`);
     },
   });
 

@@ -150,29 +150,28 @@ export default {
   mounted() {
     window.addEventListener("popstate", this.handleHistoryChange);
   },
-  computed: {
-    // currentPath(){
-    //   return window.location.pathname;
-    // }
-  },
-  watcher: {
-    "window.location.pathname": function () {
-      console.log(window.location.pathname);
-    },
-  },
+  computed: {},
   methods: {
     menuClick($event) {
       const pathName = `${$event.replaceAll(" ", "-").toLowerCase()}`;
 
+      if(window.location.pathname==="/[object%20Object]")
+      {
+        return;
+      }
+      
       window.history.pushState(pathName, pathName, pathName);
       this.currentPath = window.location.pathname;
       console.log($event, window.location.pathname);
     },
-    handleHistoryChange()
-    {
-      console.log('💰',window.location.pathname);
+    handleHistoryChange() {
+      if(window.location.pathname==="/[object%20Object]")
+      {
+        return;
+      }
+      console.log("💰", window.location.pathname);
       this.currentPath = window.location.pathname;
-    }
+    },
   },
 };
 </script>

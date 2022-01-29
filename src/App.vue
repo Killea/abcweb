@@ -7,11 +7,7 @@
       />
     </div>
     <div class="body-item">
-      {{ currentPath }}
-      <template v-if="currentPath === '/javascript-entry-level'">
-        <img alt="Vue logo" src="./assets/logo.png" />
-        <JavaScriptEntryLevel msg="Welcome to Your Vue.js App" />
-      </template>
+      <MdRender :path="currentPath" :key="mdKey"/>
     </div>
 
     <!--  -->
@@ -19,10 +15,9 @@
 </template>
 
 <script>
-import JavaScriptEntryLevel from "./components/JavaScriptEntryLevel.vue";
 import Vue from "vue";
 import "vue-navigation-bar/dist/vue-navigation-bar.css";
-
+import MdRender from "./components/MdRender.vue";
 // import the library
 import VueNavigationBar from "vue-navigation-bar";
 Vue.component("vue-navigation-bar", VueNavigationBar);
@@ -30,11 +25,12 @@ Vue.component("vue-navigation-bar", VueNavigationBar);
 export default {
   name: "App",
   components: {
-    JavaScriptEntryLevel,
+    MdRender,
   },
 
   data() {
     return {
+      mdKey:0,
       currentPath: "/",
       navbarOptions: {
         elementId: "main-navbar",
@@ -156,22 +152,22 @@ export default {
     menuClick($event) {
       const pathName = `${$event.replaceAll(" ", "-").toLowerCase()}`;
 
-      if(window.location.pathname==="/[object%20Object]")
-      {
+      if (window.location.pathname === "/[object%20Object]") {
         return;
       }
 
       window.history.pushState(pathName, pathName, pathName);
       this.currentPath = window.location.pathname;
-      console.log('ℹ️',$event, window.location.pathname);
+      console.log("ℹ️", $event, window.location.pathname);
+      this.mdKey++;
     },
     handleHistoryChange() {
-      if(window.location.pathname==="/[object%20Object]")
-      {
+      if (window.location.pathname === "/[object%20Object]") {
         return;
       }
       console.log("💰", window.location.pathname);
       this.currentPath = window.location.pathname;
+      this.mdKey++;
     },
   },
 };

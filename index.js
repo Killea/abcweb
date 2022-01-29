@@ -10,7 +10,7 @@ const pathPrefix = `${__dirname}/dist`;
 const distFolders = [
   pathPrefix,
   `${pathPrefix}/css`,
-  `${pathPrefix}/img`,
+  // `${pathPrefix}/img`,
   `${pathPrefix}/js`,
   `${pathPrefix}/fonts`,
 ];

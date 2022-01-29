@@ -11,15 +11,29 @@ export default {
   components: {
     VueMarkdown,
   },
+  props: {
+    path: {
+      type: String,
+      default: null,
+    },
+  },
+  // watch: {
+  //   // whenever question changes, this function will run
+  //   path: async function (newPath) {
+  //     const response = await fetch(`${newPath}.md`);
+  //     this.text = await response.text();
+  //     this.mdKey++;
+  //   },
+  // },
   async mounted() {
-    const response = await fetch("/javascript-entry-level.md");
+    const response = await fetch(`${this.path}.md`);
     this.text = await response.text();
   },
-  computed:{ 
-  },
+  computed: {},
   data() {
     return {
-      text: null
+      text: null,
+      mdKey: 0,
     };
   },
 };

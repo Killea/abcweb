@@ -14,7 +14,6 @@ export default {
   async mounted() {
     const response = await fetch("/javascript-entry-level.md");
     this.text = await response.text();
-    console.log(this.text)
   },
   computed:{ 
   },

@@ -48,14 +48,28 @@ const init = async () => {
     console.log(err);
   }
 
-  ["/", "/javascript-entry-level"].forEach((p) => {
-    server.route({
-      method: "GET",
-      path: p,
-      handler: (r, h) => {
-        return h.file(`${pathPrefix}/index.html`);
-      },
-    });
+  fs.readdirSync(pathPrefix).forEach((file) => {
+    const mdPath = `${pathPrefix}/${file}`;
+    if (!isFolder(mdPath) && mdPath.split(".").pop() === "md") {
+      const routePath = mdPath.replace(`${pathPrefix}`, "");
+      // console.log(routePath, mdPath, routePath.split('.').shift());
+
+      server.route({
+        method: "GET",
+        path: routePath.split(".").shift(),
+        handler: (r, h) => {
+          return h.file(`${pathPrefix}/index.html`);
+        },
+      });
+    }
+  });
+
+  server.route({
+    method: "GET",
+    path: "/",
+    handler: (r, h) => {
+      return h.file(`${pathPrefix}/index.html`);
+    },
   });
 
   server.route({
@@ -67,6 +81,15 @@ const init = async () => {
       const result = await collection.find({}).toArray();
       client.close();
       return result;
+    },
+  });
+
+  server.route({
+    method: ["GET"],
+    path: "/{any*}",
+    handler: (request, h) => {
+      console.log(request.url);
+      return 404;
     },
   });
 

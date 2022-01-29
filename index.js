@@ -1,7 +1,10 @@
-const { MongoClient } = require('mongodb')
-const uri = 'mongodb+srv://fbms:AUqLM.9S4EW26.R@cluster0.f5rok.mongodb.net/test?retryWrites=true&w=majority'
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-
+const { MongoClient } = require("mongodb");
+const uri =
+  "mongodb+srv://fbms:AUqLM.9S4EW26.R@cluster0.f5rok.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const pathPrefix = `${__dirname}/dist`;
 const distFolders = [
@@ -45,24 +48,24 @@ const init = async () => {
     console.log(err);
   }
 
-  server.route({
-    method: "GET",
-    path: "/",
-    handler: (r, h) => {
-      return h.file(`${pathPrefix}/index.html`);
-    },
+  ["/", "/javascript-entry-level"].forEach((p) => {
+    server.route({
+      method: "GET",
+      path: p,
+      handler: (r, h) => {
+        return h.file(`${pathPrefix}/index.html`);
+      },
+    });
   });
-
-
 
   server.route({
     method: "GET",
     path: "/api/get_collection",
     handler: async (r, h) => {
-      const collection = await client.db('test').collection('test_collection')
-      await client.connect()
-      const result = await collection.find({}).toArray()
-      client.close()
+      const collection = await client.db("test").collection("test_collection");
+      await client.connect();
+      const result = await collection.find({}).toArray();
+      client.close();
       return result;
     },
   });

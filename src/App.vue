@@ -6,9 +6,20 @@
         @vnb-item-clicked="menuClick"
       />
     </div>
-    <div class="body-item">
-      <MdRender :path="currentPath" :key="mdKey"/>
-    </div>
+    <div class="body-item"></div>
+
+    <el-row :gutter="10">
+      <el-col :xs="1" :sm="1" :md="1" :lg="4" :xl="4"
+        ><div class="grid-content bg-purple"></div
+      ></el-col>
+      <el-col :xs="22" :sm="22" :md="22" :lg="16" :xl="16">
+        <div class="grid-content bg-purple-light">
+          <MdRender :path="currentPath" :key="mdKey" /></div
+      ></el-col>
+      <el-col :xs="1" :sm="1" :md="1" :lg="4" :xl="4"
+        ><div class="grid-content bg-purple-light"></div
+      ></el-col>
+    </el-row>
   </div>
 </template>
 
@@ -28,7 +39,7 @@ export default {
 
   data() {
     return {
-      mdKey:0,
+      mdKey: 0,
       currentPath: "/",
       navbarOptions: {
         elementId: "main-navbar",
@@ -178,13 +189,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-.menu-bar {
-  margin-left: 200px;
-  margin-right: 200px;
+
+.vnb__menu-options__option__link {
+  font-size: 16px;
 }
-.body-item {
-  margin-left: 240px;
-  margin-right: 240px;
-  height: 92vh;
+
+.grid-content {
+  min-height: 36px;
+}
+
+body {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 </style>

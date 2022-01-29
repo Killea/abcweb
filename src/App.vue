@@ -49,6 +49,7 @@ export default {
         tooltipPlacement: "bottom",
         menuOptionsLeft: [
           {
+            isLinkAction: true,
             type: "link",
             text: "Coding lessons",
             arrowColor: "#659CC8",
@@ -159,10 +160,10 @@ export default {
       {
         return;
       }
-      
+
       window.history.pushState(pathName, pathName, pathName);
       this.currentPath = window.location.pathname;
-      console.log($event, window.location.pathname);
+      console.log('ℹ️',$event, window.location.pathname);
     },
     handleHistoryChange() {
       if(window.location.pathname==="/[object%20Object]")

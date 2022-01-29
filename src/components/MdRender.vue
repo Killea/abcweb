@@ -7,6 +7,9 @@
 </template>
 <script>
 import VueMarkdown from "vue-markdown";
+
+import Prism from "prismjs";
+
 export default {
   components: {
     VueMarkdown,
@@ -17,17 +20,12 @@ export default {
       default: null,
     },
   },
-  // watch: {
-  //   // whenever question changes, this function will run
-  //   path: async function (newPath) {
-  //     const response = await fetch(`${newPath}.md`);
-  //     this.text = await response.text();
-  //     this.mdKey++;
-  //   },
-  // },
   async mounted() {
     const response = await fetch(`${this.path}.md`);
     this.text = await response.text();
+    this.$nextTick(() => {
+      Prism.highlightAll();
+    });
   },
   computed: {},
   data() {
@@ -38,3 +36,7 @@ export default {
   },
 };
 </script>
+
+<style>
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+</style>

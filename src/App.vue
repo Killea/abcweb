@@ -9,8 +9,6 @@
     <div class="body-item">
       <MdRender :path="currentPath" :key="mdKey"/>
     </div>
-
-    <!--  -->
   </div>
 </template>
 

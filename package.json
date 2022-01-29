@@ -12,9 +12,11 @@
   "dependencies": {
     "@hapi/hapi": "^20.2.1",
     "@hapi/inert": "^6.0.5",
+    "babel-plugin-prismjs": "^2.1.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.6",
     "mongodb": "^4.3.1",
+    "prismjs": "^1.26.0",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",
     "vue-navigation-bar": "^4.1.0"

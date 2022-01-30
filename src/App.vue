@@ -53,6 +53,13 @@ export default {
         tooltipAnimationType: "shift-away",
         tooltipPlacement: "bottom",
         menuOptionsLeft: [
+                    {
+            isLinkAction: true,
+            type: "link",
+            text: "Home",
+            path: { name: "home" },
+            iconRight: '<i class="fa fa-long-arrow-right fa-fw"></i>',
+          },
           {
             isLinkAction: true,
             type: "link",
@@ -151,7 +158,16 @@ export default {
   },
   created() {
     console.log(window.location.pathname);
+
+       if (window.location.pathname === "/") {
+        this.currentPath = '/home'
+        this.mdKey++;
+        return;
+      }
+
     this.currentPath = window.location.pathname;
+
+    
   },
   mounted() {
     window.addEventListener("popstate", this.handleHistoryChange);
@@ -159,11 +175,14 @@ export default {
   computed: {},
   methods: {
     menuClick($event) {
-      const pathName = `${$event.replaceAll(" ", "-").toLowerCase()}`;
+      let pathName = `${$event.replaceAll(" ", "-").toLowerCase()}`;
 
       if (window.location.pathname === "/[object%20Object]") {
         return;
       }
+
+
+      console.log(222, pathName)
 
       window.history.pushState(pathName, pathName, pathName);
       this.currentPath = window.location.pathname;
@@ -174,6 +193,13 @@ export default {
       if (window.location.pathname === "/[object%20Object]") {
         return;
       }
+
+       if (window.location.pathname === "/") {
+        this.currentPath = '/home'
+        this.mdKey++;
+        return;
+      }
+
       console.log("💰", window.location.pathname);
       this.currentPath = window.location.pathname;
       this.mdKey++;

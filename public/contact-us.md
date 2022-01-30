@@ -1,5 +1,5 @@
 <div style="margin-top:50px" align="center">
-    <img src="c_u.png">
+    <img style="min-width:20%;width:50%" src="c_u.png">
 </div>
 <div align="center">
 
